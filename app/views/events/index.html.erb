@@ -1,0 +1,9 @@
+<h1>Events</h1>
+<% @events.each do |event| %>
+<div class="row">
+  <div class="col-md-8">
+    <h3><%= event.app_name %> | <%= link_to "Edit", edit_event_path(event) %></h3>
+    <small>IP: <%= event.ip_address %> | Type: <%= event.event_type %></small>
+  </div>
+</div>
+<%end%>

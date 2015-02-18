@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  get 'users/show'
+
+  devise_for :users
+  resources :users, only: [:update, :show]
+  root to: 'welcome#index'
+
+  get 'welcome/about'
+
+  resources :events
+  match 'events' => "events#index", via: :options
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

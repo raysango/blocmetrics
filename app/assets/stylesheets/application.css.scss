@@ -1,0 +1,19 @@
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.hide {
+  display: none;
+}
+
+.nav {
+  margin-top: 5px;
+}
+
+.user-info {
+  margin-top: 9px;
+}
+
+.center-header {
+  text-align: center;
+}

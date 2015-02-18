@@ -1,0 +1,16 @@
+<h1>New Event</h1>
+<%= form_for @event do |f| %>
+<div class="form-group">
+  <%= f.label :"Application name" %>
+  <%= f.text_area :app_name, class: 'form-control', placeholder: "Enter your app name" %>
+</div>
+<div class="form-group">
+  <%= f.label :"Email" %>
+  <%= f.text_area :email, class: 'form-control', placeholder: "Enter your email" %>
+</div>
+<div class="form-group">
+  <%= f.label :"Event Type" %>
+  <%= f.select :event_type, [['Click','click'],['Page','page']] %>
+</div>
+<%= f.submit "Save", class: 'btn btn-success' %>
+<%end%>
