@@ -3,16 +3,31 @@ class EventsController < ApplicationController
   before_filter :set_headers
   skip_before_action :verify_authenticity_token
   def index
-    @events=Event.all
+    @events = Event.all
   end
 
   def show
+    @events = Event.all
+    @event = Event.find(params[:id])
+    @app_name = @event.app_name
   end
 
   def new
     @event = Event.new
   end
   
+  def destroy
+    @event = Event.find(params[:id])
+    Event.where(app_name: @event.app_name).delete_all
+    if @event.destroy
+      flash[:notice] = "Your App was Deleted"
+      redirect_to events_path
+    else
+      flash[:error] = "There was an error"
+      redirect_to events_path
+    end
+  end
+
   def create
     @event = Event.new(events_params)
     @email = events_params["email"]
@@ -23,13 +38,14 @@ class EventsController < ApplicationController
     @user = User.find_by_email(@email)
     if @user # if user exists
       @event.user_id = @user.id
-         @event.save  
+      @event.save
       redirect_to events_path
     else 
-        @user = User.new
-      @event.user_id = @user 
-        @event.save
-        @user.save    
+      @user = User.new(email: @email, password:"password", password_confirmation:"password")
+      @user.skip_confirmation!
+        @user.save
+      @event.user_id = @user
+      @event.save
       redirect_to events_path
     end
 #     if @event.save

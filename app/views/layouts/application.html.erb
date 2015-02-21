@@ -11,6 +11,11 @@
     <ul class = "nav nav-tabs" >
       <li><%= link_to "About", welcome_about_path %></li>
       <li><%= link_to "Home", root_path %></li>
+      <% if current_user %>
+      <% if current_user.events != [] %>
+      <li><%= link_to "Events", events_path %></li>
+      <%end%>
+      <%end%>
       <div class = "pull-right user-info" >
         <% if current_user %>
         Hello <%= link_to (current_user.name || current_user.email), current_user %>!

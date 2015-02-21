@@ -1,9 +1,18 @@
-<h1>Events</h1>
+<h1>Your Apps</h1>
+<%= link_to "Add a New App", new_event_path, class:"btn btn-success" %>
 <% @events.each do |event| %>
+<% if current_user %>
+<% if event.email == "#{user_index}" %>
 <div class="row">
   <div class="col-md-8">
-    <h3><%= event.app_name %> | <%= link_to "Edit", edit_event_path(event) %></h3>
-    <small>IP: <%= event.ip_address %> | Type: <%= event.event_type %></small>
-  </div>
-</div>
+    <% if @a != event.app_name %>
+    <h2><%= link_to event.app_name, event_path(event) %></h2>
+    <small>Views Count: <%= Event.where(app_name: event.app_name).count %></small>
+    <% @a = event.app_name %>
+    <div>
+    <%= link_to "Delete", event_path(event), method: :delete, class:"btn btn-danger" %>
+    </div>
+<%end%>
+<%end%>
+<%end%>
 <%end%>

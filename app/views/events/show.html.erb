@@ -1,2 +1,10 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<h1><%= @event.app_name %></h1>
+<% @events.each do |event| %>
+<% if @app_name == event.app_name %>
+<div class="row">
+  <div class="col-md-8">
+    <h3>Type: <%= event.event_type %> | IP: <%= event.ip_address %></h3>
+  </div>
+</div>
+<%end%>
+<%end%>
