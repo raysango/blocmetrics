@@ -3,7 +3,14 @@ class EventsController < ApplicationController
   before_filter :set_headers
   skip_before_action :verify_authenticity_token
   def index
-    @events = Event.all
+    @events = []
+    app_names = []
+    Event.all.each do |event|  
+      @events << event unless app_names.include?(event.app_name)
+      app_names << event.app_name
+      
+    end
+    @events
   end
 
   def show

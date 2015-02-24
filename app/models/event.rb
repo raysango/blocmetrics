@@ -3,4 +3,5 @@ class Event < ActiveRecord::Base
 #   validates_uniqueness_of :app_name
 #   validates :app_name, presence: true
   belongs_to :user
+  belongs_to :app
 end

@@ -1,28 +1,30 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To track pageviews, add this snippet of code to any page you want to track:
 
-Things you may want to cover:
+<script>
+ var blocmetrics = function(app_name, email){
+    var _bm_event = {
+     event:{
+      app_name: app_name,
+      email: email
+      }
+    }
 
-* Ruby version
+    var _bm_request = new XMLHttpRequest();
+    _bm_request.open("POST", "http://localhost:3000/events", true);
+    _bm_request.setRequestHeader('Content-Type', 'application/json');
+    _bm_request.onreadystatechange = function() {
 
-* System dependencies
+    };
+   _bm_request.send(JSON.stringify(_bm_event));
 
-* Configuration
+ };
 
-* Database creation
+blocmetrics('app_name', 'email')
+</script>
+The only code you must customize is the second to last line of code. For example, if you wanted to track pageviews for your website named Blocmetrics, that line of code would look like this:
 
-* Database initialization
+blocmetrics('Blocmetrics', 'youremail@example.com')
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Before you can start tracking data, you need to create a profile on Blocmetrics (using the email you customized the code above with). You can then log in to Blocmetrics to see the pageviews for your app.

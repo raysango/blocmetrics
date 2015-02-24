@@ -1,18 +1,30 @@
 <h1>Your Apps</h1>
+<div class="chart" style="float: right; width: 500px" >
+  <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+  <%= pie_chart Event.where(email: "#{ current_user.email }").group(:app_name).count %>
+</div>
 <%= link_to "Add a New App", new_event_path, class:"btn btn-success" %>
 <% @events.each do |event| %>
-<% if current_user %>
-<% if event.email == "#{user_index}" %>
-<div class="row">
-  <div class="col-md-8">
-    <% if @a != event.app_name %>
-    <h2><%= link_to event.app_name, event_path(event) %></h2>
-    <small>Views Count: <%= Event.where(app_name: event.app_name).count %></small>
-    <% @a = event.app_name %>
-    <div>
-    <%= link_to "Delete", event_path(event), method: :delete, class:"btn btn-danger" %>
-    </div>
+
+<% if current_user && event.email == "#{ current_user.email }" %>
+  <div class="row" style="width: 300px">
+    <div class="col-md-8">
+      <h2><%= link_to event.app_name, event_path(event) %></h2>
+      <small>Views Count: <%= Event.where(app_name: event.app_name).count %></small>
+      <div>
+      <%= link_to "Delete", event_path(event), method: :delete, class:"btn btn-danger" %>
+      </div>
+
 <%end%>
 <%end%>
-<%end%>
-<%end%>
+    <script>
+      $(document).ready( function() {
+$(".chart").hover(
+    function() {
+        $(this).animate({ 'zoom': 1.1 }, 100);
+    },
+    function() {
+        $(this).animate({ 'zoom': 1 }, 100);
+    });
+});
+    </script>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :apps
+
   get 'users/show'
 
   devise_for :users
