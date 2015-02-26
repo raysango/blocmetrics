@@ -3,6 +3,7 @@ class EventsController < ApplicationController
   before_filter :set_headers
   skip_before_action :verify_authenticity_token
   def index
+    @user = current_user
     @events = []
     app_names = []
     Event.all.each do |event|  
