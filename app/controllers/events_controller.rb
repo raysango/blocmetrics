@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  respond_to :html, :json
+  respond_to :html, :json, :js
   before_filter :set_headers
   skip_before_action :verify_authenticity_token
   def index
@@ -29,11 +29,13 @@ class EventsController < ApplicationController
     Event.where(app_name: @event.app_name).delete_all
     if @event.destroy
       flash[:notice] = "Your App was Deleted"
-      redirect_to events_path
     else
       flash[:error] = "There was an error"
-      redirect_to events_path
     end
+    respond_to do |format|
+       format.html
+       format.js
+     end
   end
 
   def create

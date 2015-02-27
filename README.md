@@ -1,4 +1,6 @@
-== README
+<h1>Blocmetrics</h1>
+
+<h2>APP URL : https://rayblocmetrics.herokuapp.com</h2>
 
 To track pageviews, add this snippet of code to any page you want to track:
 

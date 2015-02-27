@@ -1,0 +1,9 @@
+<% if @event.destroyed? %>
+$('#event-' +<%= @event.id %>).fadeOut(2000);
+$('.message' ).html('<div class="alert alert-success"><%= escape_javascript(flash.discard(:notice)) %></div>');
+$('.message').show();
+$('.message').fadeOut(4000);
+<% else %>
+$('.message' ).html("<div class='alert alert-danger'><%= flash[:error] %></div>");
+<% end %>
+
