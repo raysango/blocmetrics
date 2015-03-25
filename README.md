@@ -17,7 +17,7 @@ To track pageviews, add this snippet of code to any page you want to track:
     _bm_request.open("POST", "http://localhost:3000/events", true);
     _bm_request.setRequestHeader('Content-Type', 'application/json');
     _bm_request.onreadystatechange = function() {
-
+    // this function runs when the Ajax request changes state
     };
    _bm_request.send(JSON.stringify(_bm_event));
 
