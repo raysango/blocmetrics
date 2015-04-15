@@ -3,7 +3,7 @@
   <div class="chart" style="float: right; width: 500px" >
     <div class = 'js-events'>
     <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
-      <%= pie_chart current_user.events.group(:app_name).count %>
+      <%= pie_chart current_user.events.group(:app_name).count, library: {backgroundColor: "transparent"} %>
     </div>
   </div>
   <%= link_to "Add a New App", new_event_path, class:"btn btn-success" %><br>
